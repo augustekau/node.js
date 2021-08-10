@@ -1,0 +1,14 @@
+{
+  "name": "tikrinimas",
+  "version": "0.0.2",
+  "description": "el pasto tikrinimas",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "validator": "^13.6.0"
+  }
+}
