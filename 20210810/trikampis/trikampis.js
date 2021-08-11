@@ -11,8 +11,13 @@ const isTrikampis = (a, b, c) => {
 const trikampis = (a, b, c) => {
   if (isTrikampis(a, b, c)) {
     console.log(chalk.green("Galima sudaryti trikampi"));
+    if (a == b && a == c) {
+      console.log(chalk.green("Lygiakrastis"));
+    } else if (a == b || b == c || a == c) {
+      console.log(chalk.green("Lygiasonis"));
+    }
   } else {
-    console.log(chalk.red("Negalima sudaryti trikampio"));
+    console.log(chalk.bgRed("Negalima sudaryti trikampio"));
   }
 };
 
