@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Olimpiniai metai</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -16,21 +16,25 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-d-12">
+        <div class="col-md-12 mt-5">
+          <h3 class="text-center">Olimpiniai metai</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
           <div class="card mt-5">
-            <div class="card-header">Japonu kalendorius</div>
+            <div class="card-header"></div>
             <div class="card-body">
               <div class="image">
-                <img src="calendar.png" alt="" />
+                <img src="olympis.jpeg" alt="" class="image" />
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card mt-3">
-            <div class="card-header">Iveskite metus</div>
+        <div class="col-md-4">
+          <div class="card mt-5">
+            <div class="card-header"></div>
             <div class="card-body">
               <form action="metai" method="POST">
                 <div class="mb-3">
@@ -44,9 +48,9 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="card mt-3">
-            <div class="card-header">Metu spalvos</div>
+        <div class="col-md-4">
+          <div class="card mt-5">
+            <div class="card-header"></div>
             <div class="card-body">{{result}}</div>
           </div>
         </div>
