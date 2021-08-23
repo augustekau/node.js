@@ -32,14 +32,19 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="card mt-5">
             <div class="card-header"></div>
             <div class="card-body">
               <form action="metai" method="POST">
                 <div class="mb-3">
                   <label class="form-label"> Metai: </label>
-                  <input type="text" name="metai" class="form-control" />
+                  <input
+                    type="text"
+                    name="metai"
+                    class="form-control"
+                    required
+                  />
                 </div>
                 <button type="submit" class="btn btn-success">
                   Skaiciuoti
@@ -48,7 +53,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <div class="card mt-5">
             <div class="card-header"></div>
             <div class="card-body">{{result}}</div>
