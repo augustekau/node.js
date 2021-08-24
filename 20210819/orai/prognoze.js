@@ -11,20 +11,21 @@ const forecast = (place, callback) => {
   // Funkcija iškviečiama Asinchroniniu būdu
 
   //Ši funkcija palies asinchroninį kodą ir vykdoma kai baigs pagrindinė f-ja (sistema) darbą
+
+  //Request callback funkciją iškviečia asinchroniniu būdu
   request({ url: url }, (error, response) => {
     const data = response.body; //Gautą atsakymą (JSON) išsaugome į kintamąjį (String)
     const weather = JSON.parse(data); //Iš string'o (JSON) pagaminame objektą
-    //console.log(weather.place.name);
-    let fc = [];
+
+    const fc = [];
+
     weather.forecastTimestamps.forEach((d) => {
       fc.push({
-        time: d.forecastTimeUtc,
+        date: d.forecastTimeUtc,
         temperature: d.airTemperature,
       });
     });
     callback(fc);
-    //return fc;
-    //console.log("Gavome duomenis");
   });
 };
 
