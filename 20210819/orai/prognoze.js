@@ -25,8 +25,31 @@ const forecast = (place, callback) => {
         temperature: d.airTemperature,
       });
     });
-    callback(fc);
+    callback(fc, weather.place.name);
   });
 };
 
-module.exports = forecast;
+//Funkciją kuri iš API per callback funkciją gražins vietovių sąrašą
+const places = (callback) => {
+  //API url'as
+  const url = "https://api.meteo.lt/v1/places";
+  //Kreipiamies į API URL ir paduodame callback funkciją kuri vykdoma gavus atsakymą
+  request({ url: url }, (error, response) => {
+    //Į data kintamajį pasitalpiname atsakymo JSON stringą
+    const data = response.body;
+    //JSON stringą pakeičiame į objektą
+    const places = JSON.parse(data);
+    //Mastvas kurį gražinsime per callback funkciją į app.js
+    const pl = [];
+    //Su ciklu pereiname per visas gautas vietoves ir jas susidedame į pl masyvą
+    places.forEach((d) => {
+      pl.push({
+        code: d.code,
+        name: d.name,
+      });
+    });
+    callback(pl);
+  });
+};
+
+module.exports = { forecast, places };

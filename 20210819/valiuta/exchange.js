@@ -18,16 +18,49 @@ const exchange = (curr1, curr2, callback) => {
     "&to=" +
     curr2;
 
+  // request({ url: url }, (error, response) => {
+  //   const data = response.body;
+  //   const currency = JSON.parse(data);
+  //   const rates = [];
+  //   // console.log(currency.rates[1]);
+  //   for (const [date, value] of Object.entries(currency.rates)) {
+  //     rates.push({ date: date, value: value[curr2] });
+  //   }
+  //   callback(rates);
+
   request({ url: url }, (error, response) => {
-    const data = response.body;
-    const currency = JSON.parse(data);
+    const currency = JSON.parse(response.body);
     const rates = [];
-    // console.log(currency.rates[1]);
-    for (const [date, value] of Object.entries(currency.rates)) {
-      rates.push({ date: date, value: value[curr2] });
+    for (const [date, value] of Object.entries(currency.rates).reverse()) {
+      rates.push({
+        date: date,
+        value: value[curr2],
+      });
     }
     callback(rates);
   });
 };
+//Funkciją kuri iš API per callback funkciją gražins vietovių sąrašą
+const currencies = (callback) => {
+  //API url'as
+  const url = "https://api.frankfurter.app/currencies";
+  //Kreipiamies į API URL ir paduodame callback funkciją kuri vykdoma gavus atsakymą
+  request({ url: url }, (error, response) => {
+    //Į data kintamajį pasitalpiname atsakymo JSON stringą
+    const data = response.body;
+    //JSON stringą pakeičiame į objektą
+    const curr = JSON.parse(data);
+    // console.log(curr);
+    const ca = [];
+    for (const [code, name] of Object.entries(curr)) {
+      ca.push({
+        code: code,
+        name: name,
+      });
+    }
+    callback(ca);
+    // console.log(ca);
+  });
+};
 
-module.exports = exchange;
+module.exports = { exchange, currencies };
