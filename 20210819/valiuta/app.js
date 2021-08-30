@@ -64,6 +64,14 @@ const server = http.createServer((req, res) => {
         stream = stream.replace("{{curr1}}", curr1);
         stream = stream.replace("{{curr2}}", curr2);
         stream = stream.replace("{{rates}}", s);
+        const chartData = [];
+        rates.forEach((d) => {
+          chartData.push({
+            x: d.date,
+            y: d.value,
+          });
+        });
+        stream = stream.replace("CurrencyData", JSON.stringify(chartData));
         res.write(stream);
         res.end();
       });

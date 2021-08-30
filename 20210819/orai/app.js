@@ -54,6 +54,19 @@ const server = http.createServer((req, res) => {
         stream = stream.replace("{{places}}", generatePlacesSelect(places));
         stream = stream.replace("{{place}}", place);
         stream = stream.replace("{{temperature}}", s);
+
+        const chartData = [];
+        temp.forEach((d) => {
+          chartData.push({
+            x: d.date.slice(5, 16),
+            y: d.temperature,
+          });
+        });
+        stream = stream.replace(
+          "TemperaturuDuomenys",
+          JSON.stringify(chartData)
+        );
+
         res.write(stream);
         res.end();
       });
