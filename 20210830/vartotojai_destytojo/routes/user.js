@@ -10,7 +10,7 @@ router.get("/", (req, res, next) => {
   // res.sendFile(path.join(__dirname, "..", "views", "user.html"));
 
   //irasom "" failo pavadinima without extention
-  //rasytume taip, bet darome konfiguracijas app.js faile
+  //rasytume taip, bet darome konfiguracijas app.js faile(11)
   // res.render("templates/user");
   res.render("user");
 });

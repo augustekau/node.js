@@ -24,11 +24,13 @@ router.get("/", (req, res, next) => {
   // res.send(
   //   "<h1>Pagrindinis puslapis</h1><br><form action='/rezultatas' method='POST'><input type='number' name='number1'><br><input type='number' name='number2'><button type='submit'>Issiusti</button></form>"
   // );
-  res.sendFile(path.join(__dirname, "..", "views", "users.html"));
+  // res.sendFile(path.join(__dirname, "..", "views", "users.html"));
+  res.render("users");
 });
 
 router.use("/", (req, res, next) => {
-  res.status(404).sendFile(path.join(__dirname, "..", "views", "404.html"));
+  // res.status(404).sendFile(path.join(__dirname, "..", "views", "404.html"));
+  res.status(404).render("404");
 });
 
 module.exports = router;
