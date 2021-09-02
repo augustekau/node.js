@@ -7,19 +7,32 @@ const router = express.Router();
 
 router.get("/", (req, res, next) => {
   // path.join(__dirname + ".."+"views"+"user.html")
-  res.sendFile(path.join(__dirname, "..", "views", "user.html"));
+  // res.sendFile(path.join(__dirname, "..", "views", "user.html"));
+
+  //irasom "" failo pavadinima without extention
+  //rasytume taip, bet darome konfiguracijas app.js faile
+  // res.render("templates/user");
+  res.render("user");
 });
 
 router.post("/add", (req, res, next) => {
-  let vardas = req.body.vardas;
-  let pavarde = req.body.pavarde;
-  res.send(
-    "<h1>Pridėti vartotoją</h1>" +
-      "Vartotojo vardas: " +
-      req.body.vardas +
-      "<br>Pavarde: " +
-      req.body.pavarde
-  );
+  // let vardas = req.body.vardas;
+  // let pavarde = req.body.pavarde;
+  res.render("result", {
+    //1 - atributo pavadinimas (kaip pavadinam cia, taip ir result faile) /2 vietoje kintamas "vardas" kur aprasytas auksciau
+    // vardas: vardas,
+    // pavarde: pavarde,
+    vardas: req.body.vardas,
+    pavarde: req.body.pavarde,
+  });
+
+  // res.send(
+  //   "<h1>Pridėti vartotoją</h1>" +
+  //     "Vartotojo vardas: " +
+  //     req.body.vardas +
+  //     "<br>Pavarde: " +
+  //     req.body.pavarde
+  // );
 });
 router.get("/add", (req, res, next) => {
   res.redirect("/user");

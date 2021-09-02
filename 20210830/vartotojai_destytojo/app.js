@@ -30,17 +30,31 @@
 ///////////////////////POST METODAS
 
 const express = require("express");
+const path = require("path");
+const hbs = require("hbs");
+
+////////////////ROUTES
 const systemRouter = require("./routes/system");
 const pageRouter = require("./routes/page");
 const userRouter = require("./routes/user");
-const app = express();
-const path = require("path");
 
+//configuruojame, kad paimtu nbs failus is templated folderio (kad nereiketu tikslaus kelio nurodyti use/page js failuose. komentaras user.js (11))
+const viewsPath = path.join(__dirname, "views", "templates");
+const partialsPath = path.join(__dirname, "views", "partials");
+
+const app = express();
+
+app.set("view engine", "hbs");
+app.set("views", viewsPath);
+hbs.registerPartials(partialsPath);
+
+//Užregistruojame Body-parser middleware kuris sutvarko atsiųstus duomenis
 app.use(express.urlencoded({ extended: false }));
-//middle ware kuris paduos statinius failus jei tokiu ras nurodytam kataloge
+//Registruojame express.static middleware kuris pagal užklausas atsiųs failus iš katalogo,
+//kurį mes padavėme kaip kintamajį middleware sukūrimo f-jai
 app.use(express.static(path.join(__dirname, "public")));
 app.use(systemRouter);
-app.use(pageRouter);
 app.use("/user", userRouter);
+app.use(pageRouter);
 
 app.listen(3000);
